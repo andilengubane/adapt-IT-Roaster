@@ -1,0 +1,5 @@
+C:\AdaptIT\AdaptIT.Web\AdaptIT.DTO\bin\Debug\AdaptIT.DTO.dll
+C:\AdaptIT\AdaptIT.Web\AdaptIT.DTO\bin\Debug\AdaptIT.DTO.pdb
+C:\AdaptIT\AdaptIT.Web\AdaptIT.DTO\obj\Debug\AdaptIT.DTO.csproj.CoreCompileInputs.cache
+C:\AdaptIT\AdaptIT.Web\AdaptIT.DTO\obj\Debug\AdaptIT.DTO.dll
+C:\AdaptIT\AdaptIT.Web\AdaptIT.DTO\obj\Debug\AdaptIT.DTO.pdb

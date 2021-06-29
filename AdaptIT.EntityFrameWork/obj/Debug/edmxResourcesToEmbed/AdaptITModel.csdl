@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdaptITModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Firstname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Cellphone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="DataLookUpId" Type="Int32" />
+    <Property Name="DateLogged" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="DataLookUp" Relationship="Self.FK__Customer__DataLo__1ED998B2" FromRole="Customer" ToRole="DataLookUp" />
+  </EntityType>
+  <EntityType Name="DataLookUp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DataSchemeId" Type="Int32" />
+    <Property Name="DateLogged" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Customer__DataLo__1ED998B2" FromRole="DataLookUp" ToRole="Customer" />
+    <NavigationProperty Name="DataScheme" Relationship="Self.FK__DataLookU__DataS__1B0907CE" FromRole="DataLookUp" ToRole="DataScheme" />
+  </EntityType>
+  <EntityType Name="DataScheme">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DateLogged" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="DataLookUp" Relationship="Self.FK__DataLookU__DataS__1B0907CE" FromRole="DataScheme" ToRole="DataLookUp" />
+  </EntityType>
+  <Association Name="FK__Customer__DataLo__1ED998B2">
+    <End Role="DataLookUp" Type="Self.DataLookUp" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataLookUp">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="DataLookUpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DataLookU__DataS__1B0907CE">
+    <End Role="DataScheme" Type="Self.DataScheme" Multiplicity="0..1" />
+    <End Role="DataLookUp" Type="Self.DataLookUp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataScheme">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DataLookUp">
+        <PropertyRef Name="DataSchemeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AdaptITEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="DataLookUp" EntityType="Self.DataLookUp" />
+    <EntitySet Name="DataScheme" EntityType="Self.DataScheme" />
+    <AssociationSet Name="FK__Customer__DataLo__1ED998B2" Association="Self.FK__Customer__DataLo__1ED998B2">
+      <End Role="DataLookUp" EntitySet="DataLookUp" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DataLookU__DataS__1B0907CE" Association="Self.FK__DataLookU__DataS__1B0907CE">
+      <End Role="DataScheme" EntitySet="DataScheme" />
+      <End Role="DataLookUp" EntitySet="DataLookUp" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

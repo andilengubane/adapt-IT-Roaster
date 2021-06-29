@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AdaptITModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="varchar" MaxLength="250" />
+          <Property Name="Surname" Type="varchar" MaxLength="250" />
+          <Property Name="Email" Type="varchar" MaxLength="250" />
+          <Property Name="Cellphone" Type="varchar" MaxLength="15" />
+          <Property Name="TotalAmount" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="DataLookUpId" Type="int" />
+          <Property Name="DateLogged" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataLookUp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="DataSchemeId" Type="int" />
+          <Property Name="DateLogged" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataScheme">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="DateLogged" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Customer__DataLo__1ED998B2">
+          <End Role="DataLookUp" Type="Self.DataLookUp" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataLookUp">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="DataLookUpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DataLookU__DataS__1B0907CE">
+          <End Role="DataScheme" Type="Self.DataScheme" Multiplicity="0..1" />
+          <End Role="DataLookUp" Type="Self.DataLookUp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataScheme">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataLookUp">
+              <PropertyRef Name="DataSchemeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdaptITModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataLookUp" EntityType="Self.DataLookUp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataScheme" EntityType="Self.DataScheme" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Customer__DataLo__1ED998B2" Association="Self.FK__Customer__DataLo__1ED998B2">
+            <End Role="DataLookUp" EntitySet="DataLookUp" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DataLookU__DataS__1B0907CE" Association="Self.FK__DataLookU__DataS__1B0907CE">
+            <End Role="DataScheme" EntitySet="DataScheme" />
+            <End Role="DataLookUp" EntitySet="DataLookUp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AdaptITModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Cellphone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="DataLookUpId" Type="Int32" />
+          <Property Name="DateLogged" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DataLookUp" Relationship="Self.FK__Customer__DataLo__1ED998B2" FromRole="Customer" ToRole="DataLookUp" />
+        </EntityType>
+        <EntityType Name="DataLookUp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataSchemeId" Type="Int32" />
+          <Property Name="DateLogged" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Customer__DataLo__1ED998B2" FromRole="DataLookUp" ToRole="Customer" />
+          <NavigationProperty Name="DataScheme" Relationship="Self.FK__DataLookU__DataS__1B0907CE" FromRole="DataLookUp" ToRole="DataScheme" />
+        </EntityType>
+        <EntityType Name="DataScheme">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DateLogged" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DataLookUp" Relationship="Self.FK__DataLookU__DataS__1B0907CE" FromRole="DataScheme" ToRole="DataLookUp" />
+        </EntityType>
+        <Association Name="FK__Customer__DataLo__1ED998B2">
+          <End Role="DataLookUp" Type="Self.DataLookUp" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataLookUp">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="DataLookUpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DataLookU__DataS__1B0907CE">
+          <End Role="DataScheme" Type="Self.DataScheme" Multiplicity="0..1" />
+          <End Role="DataLookUp" Type="Self.DataLookUp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataScheme">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataLookUp">
+              <PropertyRef Name="DataSchemeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdaptITEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="DataLookUp" EntityType="Self.DataLookUp" />
+          <EntitySet Name="DataScheme" EntityType="Self.DataScheme" />
+          <AssociationSet Name="FK__Customer__DataLo__1ED998B2" Association="Self.FK__Customer__DataLo__1ED998B2">
+            <End Role="DataLookUp" EntitySet="DataLookUp" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DataLookU__DataS__1B0907CE" Association="Self.FK__DataLookU__DataS__1B0907CE">
+            <End Role="DataScheme" EntitySet="DataScheme" />
+            <End Role="DataLookUp" EntitySet="DataLookUp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AdaptITModelStoreContainer" CdmEntityContainer="AdaptITEntities">
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="AdaptITModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Cellphone" ColumnName="Cellphone" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="DataLookUpId" ColumnName="DataLookUpId" />
+                <ScalarProperty Name="DateLogged" ColumnName="DateLogged" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataLookUp">
+            <EntityTypeMapping TypeName="AdaptITModel.DataLookUp">
+              <MappingFragment StoreEntitySet="DataLookUp">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DataSchemeId" ColumnName="DataSchemeId" />
+                <ScalarProperty Name="DateLogged" ColumnName="DateLogged" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataScheme">
+            <EntityTypeMapping TypeName="AdaptITModel.DataScheme">
+              <MappingFragment StoreEntitySet="DataScheme">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateLogged" ColumnName="DateLogged" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

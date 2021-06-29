@@ -1,0 +1,17 @@
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\AdaptIT.Service.dll.config
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\AdaptIT.Service.dll
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\AdaptIT.Service.pdb
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\AdaptIT.DTO.dll
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\AdaptIT.EntityFrameWork.dll
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\EntityFramework.dll
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\EntityFramework.SqlServer.dll
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\AdaptIT.DTO.pdb
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\AdaptIT.EntityFrameWork.pdb
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\AdaptIT.EntityFrameWork.dll.config
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\EntityFramework.xml
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\bin\Debug\EntityFramework.SqlServer.xml
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\obj\Debug\AdaptIT.Service.csprojAssemblyReference.cache
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\obj\Debug\AdaptIT.Service.csproj.CoreCompileInputs.cache
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\obj\Debug\AdaptIT.Service.csproj.CopyComplete
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\obj\Debug\AdaptIT.Service.dll
+C:\AdaptIT\AdaptIT.Web\AdaptIT.Service\obj\Debug\AdaptIT.Service.pdb
